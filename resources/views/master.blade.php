@@ -13,7 +13,10 @@
 @endif
 <ul>
     @foreach($users as $user)
-        <li>{{ $user->name }}</li> | <a href="{{route ('users.edit',['user' => $user->id])}}">Edit</a> | <a href="">delete</a>
+        <li>{{ $user->name }}</li> | 
+        <a href="{{route ('users.edit',['user' => $user->id])}}">Edit</a> | 
+        <a href="">delete</a> | 
+        <a href="{{route ('users.show',['user' => $user->id])}}">Show</a>
     @endforeach
 </ul>
 
