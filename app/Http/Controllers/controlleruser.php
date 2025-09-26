@@ -29,7 +29,7 @@ class controlleruser extends Controller
      */
     public function create()
     {
-        //
+        return view('user_create');
     }
 
     /**
@@ -37,7 +37,17 @@ class controlleruser extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $created = $this->user->create([
+            'name'=> $request -> input('name'),
+            'email'=> $request -> input('email'),
+            'password'=>bcrypt($request -> input('password')),
+        ]);
+        if($created){
+            return redirect()->route('users.index')
+                             ->with('message', 'Usuário criado com sucesso!');
+        }
+        return back()->withInput()
+                     ->with('error', 'Falha ao criar o usuário.');
     }
 
     /**
